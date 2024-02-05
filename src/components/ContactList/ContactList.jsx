@@ -1,39 +1,28 @@
-import { Component } from 'react';
 import css from './ContactList.module.css';
 import PropTypes from 'prop-types';
 
-export class ContactList extends Component {
-  handleDelete = id => {
-    const { value } = id.target;
-    this.props.onClick(value);
-  };
 
-  render() {
-    const { contacts } = this.props;
-
-    return (
-      <ul>
-        {contacts.map(contact => {
-          return (
-            <li key={contact.id} className={css.listEl}>
-              {contact.name}: {contact.number}
-              <button
-                type="submit"
-                value={contact.id}
-                onClick={this.handleDelete}
-                className={css.delButton}
-              >
-                Delete
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-    );
-  }
-}
+export const ContactList = ({ deleteContact, showFilteredContacts }) => {
+  return (
+    <ul>
+      {showFilteredContacts.map(n => (
+        <li key={n.id} className={css.listEl}>
+          {n.name}: {n.number}
+          <button
+            type="button"
+            onClick={() => deleteContact(n.id)}
+            className={css.delButton}
+          >
+            Delete
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 ContactList.propTypes = {
-  contacts: PropTypes.array.isRequired,
-  onClick: PropTypes.func.isRequired,
+  showFilteredContacts: PropTypes.array,
+
+  deleteContact: PropTypes.func,
 };

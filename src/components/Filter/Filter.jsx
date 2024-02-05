@@ -1,22 +1,18 @@
-import { Component } from 'react';
+import React from 'react'
 import PropTypes from 'prop-types';
 
-export class Filter extends Component {
-  handleInputChange = e => {
-    const { value } = e.target;
-    this.props.onChange(value);
+export const Filter = ({ filteredList }) => {
+  const handleInputChange = (e) => {
+    filteredList(e.target.value);
   };
-
-  render() {
-    return (
-      <>
-        <p>Find contacts by name</p>
-        <input onChange={this.handleInputChange} />
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <p>Find contacts by name</p>
+      <input onChange={handleInputChange} />
+    </>
+  );
+};
 
 Filter.propTypes = {
-  onChange: PropTypes.func.isRequired,
+  ilteredList: PropTypes.func,
 };
