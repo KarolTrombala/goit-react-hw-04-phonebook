@@ -5,6 +5,7 @@ export const Filter = ({ filteredList }) => {
   const handleInputChange = (e) => {
     filteredList(e.target.value);
   };
+  
   return (
     <>
       <p>Find contacts by name</p>
@@ -14,5 +15,5 @@ export const Filter = ({ filteredList }) => {
 };
 
 Filter.propTypes = {
-  ilteredList: PropTypes.func,
+  filteredList: PropTypes.func,
 };
